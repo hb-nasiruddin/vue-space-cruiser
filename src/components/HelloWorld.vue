@@ -1,8 +1,8 @@
 <template>
   <div>
-    <!-- <div class="loading" v-if="loading"> Loading...</div>
+    <div class="loading" v-if="loading"> Loading...</div>
     <div class="error" v-if="error"> {{ error }}</div>
-    <div class="data" v-if="data"> {{ data }}</div> -->
+    <div class="data" v-if="data"> {{ data }}</div>
   </div>
 </template>
 
@@ -17,12 +17,7 @@ export default {
   },
 
   setup() {
-    const { loading, error, data } = useQuery({
-      GET_CHARACTERS,
-      variables: {
-        page: 1,
-      },
-    }).then((res) => console.log(res)).catch((err) => console.error(err));
+    const { loading, error, data } = useQuery(GET_CHARACTERS);
     console.log({ data });
     return {
       loading,
