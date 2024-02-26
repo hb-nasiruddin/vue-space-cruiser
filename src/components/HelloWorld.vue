@@ -1,24 +1,34 @@
 <template>
-  <div class="dropdown">
-    <button
-      class="btn btn-secondary dropdown-toggle"
-      type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-      aria-expanded="false">
-      Check Bootstrap
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
-      <li><a class="dropdown-item" href="#">Something else here</a></li>
-    </ul>
+  <div>
+    <!-- <div class="loading" v-if="loading"> Loading...</div>
+    <div class="error" v-if="error"> {{ error }}</div>
+    <div class="data" v-if="data"> {{ data }}</div> -->
   </div>
 </template>
 
 <script>
+import { useQuery } from '@vue/apollo-composable';
+import { GET_CHARACTERS } from '@/lib';
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String,
+  },
+
+  setup() {
+    const { loading, error, data } = useQuery({
+      GET_CHARACTERS,
+      variables: {
+        page: 1,
+      },
+    }).then((res) => console.log(res)).catch((err) => console.error(err));
+    console.log({ data });
+    return {
+      loading,
+      error,
+      data,
+    };
   },
 };
 </script>
