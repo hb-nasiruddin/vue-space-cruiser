@@ -11,6 +11,14 @@ module.exports = {
     parser: '@babel/eslint-parser',
   },
   rules: {
+    'max-len': ['error', {
+      code: 150,
+      ignoreComments: true,
+      ignoreUrls: true,
+      ignoreStrings: true,
+      ignoreTemplateLiterals: true,
+      ignoreRegExpLiterals: true,
+    }],
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
   },
